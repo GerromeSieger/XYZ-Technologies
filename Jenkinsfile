@@ -1,31 +1,22 @@
 pipeline {
     agent any
+    tools {
+     maven 'maven-3.6.3' 
+    }   
     stages {
         stage('Compile') {
             steps {
-                script {
-                    withMaven(maven: 'Maven 3.3.9', jdk: 'jdk8') {
-                        sh 'mvn compile'
-                    }
-                }
+                sh 'mvn compile'
             }
         }
         stage('Test') {
             steps {
-                script {
-                    withMaven(maven: 'Maven 3.3.9', jdk: 'jdk8') {
-                        sh 'mvn test'
-                    }
-                }
+                sh 'mvn test'
             }
         }
         stage('Package') {
             steps {
-                script {
-                    withMaven(maven: 'Maven 3.3.9', jdk: 'jdk8') {
-                        sh 'mvn package'
-                    }
-                }
+                sh 'mvn package'
             }
         }
     }
