@@ -3,17 +3,29 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'mvn compile'
+                script {
+                    withMaven(maven: 'Maven 3.3.9', jdk: 'jdk8') {
+                        sh 'mvn compile'
+                    }
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                script {
+                    withMaven(maven: 'Maven 3.3.9', jdk: 'jdk8') {
+                        sh 'mvn test'
+                    }
+                }
             }
         }
         stage('Package') {
             steps {
-                sh 'mvn package'
+                script {
+                    withMaven(maven: 'Maven 3.3.9', jdk: 'jdk8') {
+                        sh 'mvn package'
+                    }
+                }
             }
         }
     }
